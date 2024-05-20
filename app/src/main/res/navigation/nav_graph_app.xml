@@ -1,0 +1,24 @@
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/nav_graph_app"
+    app:startDestination="@id/screenA">
+
+    <fragment
+        android:id="@+id/screenA"
+        android:name="com.example.modulea.ListingScreen"
+        android:label="Screen A">
+        <action
+            android:id="@+id/action_screenA_to_screenB"
+            app:destination="@id/screenB">
+        </action>
+    </fragment>
+
+    <fragment
+        android:id="@+id/screenB"
+        android:name="com.example.moduleb.DetailsScreen"
+        android:label="Screen B">
+        <argument
+            android:name="itemId"
+            app:argType="string" />
+    </fragment>
+</navigation>
