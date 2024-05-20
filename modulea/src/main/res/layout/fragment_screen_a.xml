@@ -6,7 +6,7 @@
     android:theme="@style/ThemeOverlay.Dagger2Example.FullscreenContainer"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="?attr/fullscreenBackgroundColor"
-    tools:context=".ListingScreen">
+    tools:context=".ui.ListingScreen">
 
     <ProgressBar
         android:visibility="gone"

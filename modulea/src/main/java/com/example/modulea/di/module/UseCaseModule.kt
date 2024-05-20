@@ -1,4 +1,4 @@
-package com.example.modulea.module
+package com.example.modulea.di.module
 
 import com.example.modulea.abstraction.repository.UniversityRepository
 import com.example.modulea.usecase.AddDataInDBUseCase

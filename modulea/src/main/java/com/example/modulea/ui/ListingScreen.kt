@@ -1,4 +1,4 @@
-package com.example.modulea
+package com.example.modulea.ui
 
 import android.content.Context
 import android.os.Bundle
