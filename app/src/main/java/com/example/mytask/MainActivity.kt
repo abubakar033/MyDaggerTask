@@ -2,17 +2,12 @@ package com.example.mytask
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupActionBarWithNavController
 import com.example.modulea.callback.OnItemClick
 import com.example.moduleb.callback.OnRefreshClick
-import com.example.mytask.R
-//import com.example.mytask.viewmodel.MainViewModel
-//import com.example.mytask.viewmodel.MainViewModelFactory
-import javax.inject.Inject
+
 
 class MainActivity : AppCompatActivity() ,OnItemClick , OnRefreshClick {
     private lateinit var navHostFragment: NavHostFragment
