@@ -1,9 +1,9 @@
 package com.example.modulea.di.module
 
-import com.example.modulea.abstraction.repository.UniversityRepository
-import com.example.modulea.usecase.AddDataInDBUseCase
-import com.example.modulea.usecase.LocalDataUniversitiesUseCase
-import com.example.modulea.usecase.SearchUniversitiesUseCase
+import com.example.modulea.domain.repository.UniversityRepository
+import com.example.modulea.domain.usecase.AddDataInDBUseCase
+import com.example.modulea.domain.usecase.LocalDataUniversitiesUseCase
+import com.example.modulea.domain.usecase.SearchUniversitiesUseCase
 import dagger.Module
 import dagger.Provides
 

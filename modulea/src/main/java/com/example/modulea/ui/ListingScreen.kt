@@ -6,16 +6,15 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import com.example.modulea.adapter.UniversityAdapter
-import com.example.modulea.callback.OnItemClick
+import com.example.modulea.ui.adapter.UniversityAdapter
+import com.example.modulea.ui.callback.OnItemClick
 import com.example.modulea.databinding.FragmentScreenABinding
 import com.example.modulea.di.ApplicationComponent
 import com.example.modulea.di.DaggerApplicationComponent
-import com.example.modulea.model.UniversityDTO
-import com.example.modulea.sealedclass.ApiCallState
+import com.example.modulea.domain.model.UniversityDTO
+import com.example.modulea.utills.sealedclass.ApiCallState
 import com.example.modulea.utills.AppUtils
 import com.example.modulea.utills.showOrHide
-import com.example.modulea.viewmodel.ListingScreenViewModel
 import javax.inject.Inject
 
 

@@ -5,11 +5,12 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupActionBarWithNavController
-import com.example.modulea.callback.OnItemClick
+import com.example.modulea.ui.callback.OnItemClick
+import com.example.modulea.domain.model.UniversityDTO
 import com.example.moduleb.callback.OnRefreshClick
 
 
-class MainActivity : AppCompatActivity() ,OnItemClick , OnRefreshClick {
+class MainActivity : AppCompatActivity() , OnItemClick, OnRefreshClick {
     private lateinit var navHostFragment: NavHostFragment
     private lateinit var navController: NavController
 
@@ -26,7 +27,7 @@ class MainActivity : AppCompatActivity() ,OnItemClick , OnRefreshClick {
         return navController.navigateUp() || super.onSupportNavigateUp()
     }
 
-    override fun onItemClick(item: com.example.modulea.model.UniversityDTO) {
+    override fun onItemClick(item: UniversityDTO) {
         val data = Bundle()
         data.putString("name", item.name)
         data.putString("state", item.stateProvince)
