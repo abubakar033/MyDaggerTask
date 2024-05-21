@@ -11,6 +11,6 @@ interface UniversityDAO {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun addCountries(countries: UniversityEntity)
 
-    @Query("SELECT * FROM university_table") // Use the same table name here
+    @Query("SELECT * FROM university_table")
     suspend fun getUniversities(): UniversityEntity
 }

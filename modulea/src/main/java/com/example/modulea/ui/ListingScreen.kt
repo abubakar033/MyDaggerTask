@@ -6,11 +6,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import com.example.modulea.MyApp
 import com.example.modulea.ui.adapter.UniversityAdapter
-import com.example.modulea.ui.callback.OnItemClick
+import com.example.modulea.ui.callback.OnListItemCallBack
 import com.example.modulea.databinding.FragmentScreenABinding
-import com.example.modulea.di.ApplicationComponent
-import com.example.modulea.di.DaggerApplicationComponent
 import com.example.modulea.domain.model.UniversityDTO
 import com.example.modulea.utills.sealedclass.ApiCallState
 import com.example.modulea.utills.AppUtils
@@ -20,21 +19,18 @@ import javax.inject.Inject
 
 class ListingScreen : Fragment() {
 
-    lateinit var applicationComponent: ApplicationComponent
-
     @Inject
     lateinit var viewModel: ListingScreenViewModel
     private var _binding: FragmentScreenABinding? = null
     private lateinit var adapter: UniversityAdapter
-    private lateinit var callback : OnItemClick
+    private lateinit var callback : OnListItemCallBack
     private lateinit var mContext: Context
     private val binding get() = _binding!!
 
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
-        applicationComponent = DaggerApplicationComponent.factory().create(context)
-        this.callback = context as OnItemClick
+        this.callback = context as OnListItemCallBack
         this.mContext = context
     }
     override fun onCreateView(
@@ -51,13 +47,18 @@ class ListingScreen : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        applicationComponent.inject(this)
-        viewModel.fetchData("Pakistan")
+        MyApp.applicationComponent.inject(this)
+
+        if (AppUtils.isInternetAvailable(mContext)){
+            viewModel.fetchDataFromRemote("Pakistan")
+        }else{
+            viewModel.fetchDataFromLocal()
+        }
         viewModel.liveData.observe(viewLifecycleOwner){
             handleData(it)
         }
         adapter = UniversityAdapter{ item->
-            callback.onItemClick(item)
+            callback.onListItemClick(item)
         }
         binding.rvUniversity.adapter = adapter
 

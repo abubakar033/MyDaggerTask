@@ -5,12 +5,12 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupActionBarWithNavController
-import com.example.modulea.ui.callback.OnItemClick
+import com.example.modulea.ui.callback.OnListItemCallBack
 import com.example.modulea.domain.model.UniversityDTO
-import com.example.moduleb.callback.OnRefreshClick
+import com.example.moduleb.callback.OnRefreshBtnCallback
 
 
-class MainActivity : AppCompatActivity() , OnItemClick, OnRefreshClick {
+class MainActivity : AppCompatActivity() , OnListItemCallBack, OnRefreshBtnCallback {
     private lateinit var navHostFragment: NavHostFragment
     private lateinit var navController: NavController
 
@@ -27,17 +27,17 @@ class MainActivity : AppCompatActivity() , OnItemClick, OnRefreshClick {
         return navController.navigateUp() || super.onSupportNavigateUp()
     }
 
-    override fun onItemClick(item: UniversityDTO) {
+    override fun onListItemClick(universityDTO: UniversityDTO) {
         val data = Bundle()
-        data.putString("name", item.name)
-        data.putString("state", item.stateProvince)
-        data.putString("code", item.alphaTwoCode)
-        data.putString("page", item.webPages[0])
-        data.putString("domains", item.domains[0])
+        data.putString("name", universityDTO.name)
+        data.putString("state", universityDTO.stateProvince)
+        data.putString("code", universityDTO.alphaTwoCode)
+        data.putString("page", universityDTO.webPages[0])
+        data.putString("domains", universityDTO.domains[0])
       navController.navigate(R.id.action_screenA_to_screenB, data)
     }
 
-    override fun onClick() {
+    override fun onRefreshBtnClick() {
         navController.popBackStack(R.id.screenA, false)
     }
 

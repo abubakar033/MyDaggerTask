@@ -22,7 +22,7 @@ class ListingScreenViewModel @Inject constructor(
     private val _liveData = MutableLiveData<ApiCallState<List<UniversityDTO>>>()
     val liveData: LiveData<ApiCallState<List<UniversityDTO>>> = _liveData
 
-    fun fetchData(name: String) {
+    fun fetchDataFromRemote(name: String) {
         _liveData.value = ApiCallState.Loading
         viewModelScope.launch(Dispatchers.IO) {
             try {
@@ -32,19 +32,29 @@ class ListingScreenViewModel @Inject constructor(
                     _liveData.postValue(ApiCallState.Success(data))
                     addDataInDBUseCase.execute(data)
                 } else {
-                    val localData = loadDataFromDBUseCase.execute()
-                    if (localData.isEmpty()) {
-                        _liveData.postValue(ApiCallState.Error("No data available"))
-                    } else {
-                        _liveData.postValue(ApiCallState.Success(localData))
-                    }
+                   fetchDataFromLocal()
                 }
             } catch (e: Exception) {
-                // Handle error
-                val errorMessage = e.message ?: "Unknown error"
-                _liveData.postValue(ApiCallState.Error(errorMessage))
+           fetchDataFromLocal()
             }
         }
+    }
+
+    fun fetchDataFromLocal() {
+        try {
+            viewModelScope.launch (Dispatchers.IO){
+                val localData = loadDataFromDBUseCase.execute()
+                if (localData.isEmpty()) {
+                    _liveData.postValue(ApiCallState.Error("No data available"))
+                } else {
+                    _liveData.postValue(ApiCallState.Success(localData))
+                }
+            }
+        }catch (e:Exception){
+            val errorMessage = e.message ?: "Unknown error"
+            _liveData.postValue(ApiCallState.Error(errorMessage))
+        }
+
     }
 
 }
