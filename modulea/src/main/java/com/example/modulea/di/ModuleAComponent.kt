@@ -18,11 +18,11 @@ import javax.inject.Singleton
     RepositoryModule::class,
     ViewModelModule::class,
     UseCaseModule::class])
-interface ApplicationComponent{
+interface ModuleAComponent{
     fun inject(fragment: ListingScreen)
     @Component.Factory
     interface Factory {
-        fun create(@BindsInstance context: Context): ApplicationComponent
+        fun create(@BindsInstance context: Context): ModuleAComponent
     }
 
 }
